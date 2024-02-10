@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MyController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -55,3 +56,13 @@ Route::get('/pages/show/', [PageController::class, 'showOne2'] );
 Route::get('/pages/show/{id}', [PageController::class, 'showOne4'] );
 Route::get('/pages/show/array/{id}', [PageController::class, 'showOne5'] );
 Route::get('/pages/all', [PageController::class, 'showAll'] );
+
+
+//Задание 10.1
+
+//Route:: get('/method1', [MyController::class, 'method1']);
+//Route:: get('/method2', [MyController::class, 'method2']);
+//Route:: get('/method3', [MyController::class, 'method3']);
+
+
+Route:: get('/method/{title}/{contetn}', [MyController::class, 'method']);
