@@ -22,8 +22,34 @@ class MyController extends Controller
                 'href' =>'href3',
             ],
         ];
+        $users = [
+            [
+                'name' => 'user1',
+                'surname' => 'surname1',
+                'banned' => true,
+            ],
+            [
+                'name' => 'user2',
+                'surname' => 'surname2',
+                'banned' => false,
+            ],
+            [
+                'name' => 'user3',
+                'surname' => 'surname3',
+                'banned' => true,
+            ],
+            [
+                'name' => 'user4',
+                'surname' => 'surname4',
+                'banned' => false,
+            ],[
+                'name' => 'user5',
+                'surname' => 'surname5',
+                'banned' => false,
+            ],
+        ];
         //return view('method', ['title' => $title, 'content' => $content, 'links'=>$links]);
-        return view('method', compact('title', 'content', 'links'));
+        return view('method', compact('title', 'content', 'links','users'));
 
     }
 
