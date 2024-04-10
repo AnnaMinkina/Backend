@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MyController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -66,3 +67,20 @@ Route::get('/pages/all', [PageController::class, 'showAll'] );
 
 
 Route:: get('/method/{title}/{contetn}', [MyController::class, 'method']);
+
+
+//Задание 2
+Route::get('/zadanie2', [PostController::class, 'zadanie2'] );
+Route::get('/zadanie3', [PostController::class, 'zadanie3'] );
+Route::get('/zadanie4', [PostController::class, 'zadanie4'] );
+Route::get('/zadanie5', [PostController::class, 'zadanie5'] );
+Route::get('/zadanie6', [PostController::class, 'zadanie6'] );
+Route::get('/zadanie7', [PostController::class, 'zadanie7'] );
+Route::get('/zadanie8', [PostController::class, 'zadanie8'] );
+Route::get('/zadanie9', [PostController::class, 'zadanie9'] );
+Route::get('/zadanie10', [PostController::class, 'zadanie10'] );
+
+
+
+
+
