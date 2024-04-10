@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -99,7 +101,7 @@ class PostController extends Controller
     {
         $query = DB::table('employees')->where(function ($query) {
             $query->where('salary', 400)
-                ->orWhere('id','>', 4);
+                ->orWhere('id', '>', 4);
         })
             ->get();
         echo '<table border="1">';
@@ -194,5 +196,128 @@ class PostController extends Controller
             echo '<p> Должность: ' . $post->position . '</p>';
             echo '<p> Зарплата: ' . $post->salary . '</p>';
         }
+    }
+    public function nomer13_2_2()
+    {
+        DB::table('users')->insert([
+            [
+                'login'  => Str::random(10),
+                'password'  => Hash::make('10'),
+                'email'  => Str::random(7) . '@gmail.com',
+            ],
+
+        ]);
+        echo '<p> Задание 2 выполнено. Новый юзер добавлен в таблицу</p>';
+        $employees = DB::table('users')->get();
+        // Выводим данные в виде таблицы
+        echo '<table border="1">';
+        echo '<tr><th>ID</th><th>Lodin</th><th>Password</th><th>Email</th></tr>';
+        foreach ($employees as $employee) {
+            echo '<tr>';
+            echo '<td>' . $employee->id . '</td>';
+            echo '<td>' . $employee->login . '</td>';
+            echo '<td>' . $employee->password . '</td>';
+            echo '<td>' . $employee->email . '</td>';
+            echo '</tr>';
+        }
+        echo '</table>';
+    }
+    public function nomer13_2_3()
+    {
+        for ($i = 0; $i < 3; $i++) {
+            DB::table('users')->insert([
+                'login'  => Str::random(10),
+                'password'  => Hash::make('10'),
+                'email'  => Str::random(7) . '@gmail.com',
+            ]);
+        }
+        echo '<p> Задание 3 выполнено. 3 новых юзера добавлено в таблицу</p>';
+        $employees = DB::table('users')->get();
+        // Выводим данные в виде таблицы
+        echo '<table border="1">';
+        echo '<tr><th>ID</th><th>Lodin</th><th>Password</th><th>Email</th></tr>';
+        foreach ($employees as $employee) {
+            echo '<tr>';
+            echo '<td>' . $employee->id . '</td>';
+            echo '<td>' . $employee->login . '</td>';
+            echo '<td>' . $employee->password . '</td>';
+            echo '<td>' . $employee->email . '</td>';
+            echo '</tr>';
+        }
+        echo '</table>';
+    }
+    public function nomer13_2_4()
+    {
+        echo '<p> Исходная таблица </p>';
+
+        $employees = DB::table('users')->get();
+        // Выводим данные в виде таблицы
+        echo '<table border="1">';
+        echo '<tr><th>ID</th><th>Lodin</th><th>Password</th><th>Email</th></tr>';
+        foreach ($employees as $employee) {
+            echo '<tr>';
+            echo '<td>' . $employee->id . '</td>';
+            echo '<td>' . $employee->login . '</td>';
+            echo '<td>' . $employee->password . '</td>';
+            echo '<td>' . $employee->email . '</td>';
+            echo '</tr>';
+        }
+        echo '</table>';
+        DB::table('users')->where('id', 1)->update([
+            'login'  => Str::random(10),
+            'password'  => Hash::make('10'),
+            'email'  => Str::random(7) . '@gmail.com',
+        ]);
+
+        echo '<p> Задание 4 выполнено. Информация юзера была обновлена</p>';
+        $employees = DB::table('users')->get();
+        // Выводим данные в виде таблицы
+        echo '<table border="1">';
+        echo '<tr><th>ID</th><th>Lodin</th><th>Password</th><th>Email</th></tr>';
+        foreach ($employees as $employee) {
+            echo '<tr>';
+            echo '<td>' . $employee->id . '</td>';
+            echo '<td>' . $employee->login . '</td>';
+            echo '<td>' . $employee->password . '</td>';
+            echo '<td>' . $employee->email . '</td>';
+            echo '</tr>';
+        }
+        echo '</table>';
+    }
+    public function nomer13_2_5()
+    {
+        echo '<p> Исходная таблица </p>';
+
+        $employees = DB::table('users')->get();
+        // Выводим данные в виде таблицы
+        echo '<table border="1">';
+        echo '<tr><th>ID</th><th>Lodin</th><th>Password</th><th>Email</th></tr>';
+        foreach ($employees as $employee) {
+            echo '<tr>';
+            echo '<td>' . $employee->id . '</td>';
+            echo '<td>' . $employee->login . '</td>';
+            echo '<td>' . $employee->password . '</td>';
+            echo '<td>' . $employee->email . '</td>';
+            echo '</tr>';
+        }
+        echo '</table>';
+        DB::table('users')
+		->where('id', 5)
+		->delete();
+
+        echo '<p> Задание 5 выполнено. Один юзер был удален</p>';
+        $employees = DB::table('users')->get();
+        // Выводим данные в виде таблицы
+        echo '<table border="1">';
+        echo '<tr><th>ID</th><th>Lodin</th><th>Password</th><th>Email</th></tr>';
+        foreach ($employees as $employee) {
+            echo '<tr>';
+            echo '<td>' . $employee->id . '</td>';
+            echo '<td>' . $employee->login . '</td>';
+            echo '<td>' . $employee->password . '</td>';
+            echo '<td>' . $employee->email . '</td>';
+            echo '</tr>';
+        }
+        echo '</table>';
     }
 }
