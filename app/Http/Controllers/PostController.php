@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -302,8 +303,8 @@ class PostController extends Controller
         }
         echo '</table>';
         DB::table('users')
-		->where('id', 5)
-		->delete();
+            ->where('id', 5)
+            ->delete();
 
         echo '<p> Задание 5 выполнено. Один юзер был удален</p>';
         $employees = DB::table('users')->get();
@@ -319,5 +320,50 @@ class PostController extends Controller
             echo '</tr>';
         }
         echo '</table>';
+    }
+
+    public function getAll($order = 'date', $dir = 'desc')
+    {
+        if ($order == 'date') {
+            $order = 'created_at';
+        }
+        // $post=Post::all();
+        $posts = Post::orderBy($order, $dir)->get();
+        // $posts=Post::latest()->get();
+        return view('index', ['posts' => $posts]);
+    }
+
+    public function getOne($id)
+    {
+        $post = Post::find($id);
+        if (!$post) {
+            return view('404');
+        }
+        return view('show', ['post' => $post]);
+    }
+
+    public function newPost(Request $request)
+    {
+        Post::create($request->all());
+        return redirect('/post/all');
+    }
+
+    public function editPost(Request $request, $id)
+    {
+        $post = Post::find($id);
+        if ($request->method() == 'POST') {
+            $post->title = $request->title;
+            $post->desc = $request->desc;
+            $post->text = $request->text;
+            $post->save(); //сохраним модель
+            return redirect('/post/all');
+        }
+        return view('editPost', ['post' => $post]);
+    }
+    public function delPost($id)
+    {
+        $post = Post::find($id);
+	    $post->delete();
+        return redirect('/post/all');
     }
 }
