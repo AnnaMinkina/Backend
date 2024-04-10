@@ -69,7 +69,7 @@ Route::get('/pages/all', [PageController::class, 'showAll'] );
 Route:: get('/method/{title}/{contetn}', [MyController::class, 'method']);
 
 
-//Задание 2
+//Задание 13/1
 Route::get('/zadanie2', [PostController::class, 'zadanie2'] );
 Route::get('/zadanie3', [PostController::class, 'zadanie3'] );
 Route::get('/zadanie4', [PostController::class, 'zadanie4'] );
