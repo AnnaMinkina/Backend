@@ -1,7 +1,9 @@
 <?php
 
+use App\Country;
 use App\Http\Controllers\MyController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\CountryController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -105,3 +107,5 @@ Route::post('/post/new', [PostController::class, 'newPost']);
 Route::match(['get', 'post'], '/post/edit/{id}', [PostController::class, 'editPost'])->name('edit');
 Route::get('/post/del/{id}', [PostController::class, 'delPost'])->name('del');
 
+//Задание 15.1
+Route::get('/countries', [CountryController::class, 'index']);
